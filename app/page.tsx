@@ -17,12 +17,20 @@ export default function Home() {
               <h1 className="text-3xl font-bold">看護デジタルニュース</h1>
               <p className="text-primary-100 mt-1">Nursing Digital News</p>
             </div>
-            <Link
-              href="/admin"
-              className="bg-white text-primary-600 px-4 py-2 rounded hover:bg-primary-50 transition"
-            >
-              管理画面
-            </Link>
+            <div className="flex gap-3">
+              <Link
+                href="/game"
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition font-medium"
+              >
+                アドベンチャーゲーム
+              </Link>
+              <Link
+                href="/admin"
+                className="bg-white text-primary-600 px-4 py-2 rounded hover:bg-primary-50 transition"
+              >
+                管理画面
+              </Link>
+            </div>
           </div>
         </div>
       </header>
