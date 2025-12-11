@@ -11,16 +11,22 @@
     "seed": "tsx lib/seed.ts"
   },
   "dependencies": {
+    "@pixiv/three-vrm": "^3.4.4",
+    "@react-three/drei": "^9.92.7",
+    "@react-three/fiber": "^8.15.19",
     "better-sqlite3": "^11.0.0",
     "next": "^14.2.0",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "three": "^0.182.0",
+    "three-stdlib": "^2.36.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.2.0",
