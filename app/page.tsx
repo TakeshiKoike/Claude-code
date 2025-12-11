@@ -17,12 +17,20 @@ export default function Home() {
               <h1 className="text-3xl font-bold">看護デジタルニュース</h1>
               <p className="text-primary-100 mt-1">Nursing Digital News</p>
             </div>
-            <Link
-              href="/admin"
-              className="bg-white text-primary-600 px-4 py-2 rounded hover:bg-primary-50 transition"
-            >
-              管理画面
-            </Link>
+            <div className="flex gap-3">
+              <Link
+                href="/patients"
+                className="bg-white text-primary-600 px-4 py-2 rounded hover:bg-primary-50 transition"
+              >
+                模擬患者
+              </Link>
+              <Link
+                href="/admin"
+                className="bg-primary-700 text-white px-4 py-2 rounded hover:bg-primary-800 transition"
+              >
+                管理画面
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -46,6 +54,12 @@ export default function Home() {
                 {category}
               </Link>
             ))}
+            <Link
+              href="/patients"
+              className="text-primary-600 hover:text-primary-800 font-bold whitespace-nowrap border-l pl-6 ml-2"
+            >
+              模擬患者シミュレーション
+            </Link>
           </div>
         </div>
       </nav>

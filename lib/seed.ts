@@ -12,7 +12,7 @@ const sampleArticles = [
 今後は、AI技術を活用した記録支援機能の実装も予定されており、さらなる業務効率化が期待されています。`,
     category: '電子カルテ',
     author: '編集部',
-    image_url: null,
+    image_url: undefined,
   },
   {
     title: '医療DX推進で遠隔看護サービスが拡大',
@@ -25,7 +25,7 @@ const sampleArticles = [
 厚生労働省も遠隔医療の推進を後押ししており、今後さらなる普及が見込まれています。`,
     category: '医療DX',
     author: '田中 健太',
-    image_url: null,
+    image_url: undefined,
   },
   {
     title: 'VR技術を活用した看護教育プログラムが注目',
@@ -38,7 +38,7 @@ VRシミュレーターを使用することで、実際の臨床場面を安全
 また、学生一人ひとりの習熟度に応じたカスタマイズされた教育プログラムの提供も可能になっています。`,
     category: '看護教育',
     author: '佐藤 美咲',
-    image_url: null,
+    image_url: undefined,
   },
   {
     title: 'スマートウォッチで患者のバイタルサインを24時間モニタリング',
@@ -51,7 +51,7 @@ VRシミュレーターを使用することで、実際の臨床場面を安全
 今後は、AIによる予測分析機能の追加も予定されており、予防医療への応用も期待されています。`,
     category: 'デジタルヘルス',
     author: '鈴木 太郎',
-    image_url: null,
+    image_url: undefined,
   },
   {
     title: '看護記録のAI自動要約機能が試験運用開始',
@@ -64,7 +64,7 @@ VRシミュレーターを使用することで、実際の臨床場面を安全
 プライバシー保護の観点から、個人情報の取り扱いには十分な配慮がなされており、今後の本格導入に向けた検証が進められています。`,
     category: 'その他',
     author: '編集部',
-    image_url: null,
+    image_url: undefined,
   },
 ];
 

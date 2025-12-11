@@ -30,6 +30,31 @@ export function initDatabase() {
     )
   `);
 
+  // 模擬患者テーブル
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS simulated_patients (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      age INTEGER NOT NULL,
+      gender TEXT NOT NULL,
+      chief_complaint TEXT NOT NULL,
+      medical_history TEXT,
+      current_symptoms TEXT NOT NULL,
+      vital_temperature REAL,
+      vital_blood_pressure TEXT,
+      vital_pulse INTEGER,
+      vital_respiration INTEGER,
+      vital_spo2 INTEGER,
+      scenario_description TEXT,
+      learning_objectives TEXT,
+      difficulty_level TEXT DEFAULT '初級',
+      patient_personality TEXT,
+      expected_responses TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // デフォルト管理者の作成（パスワード: admin123）
   // 本番環境では必ず変更してください
   const userExists = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
