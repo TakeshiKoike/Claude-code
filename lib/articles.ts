@@ -7,6 +7,7 @@ export interface Article {
   category: string;
   author: string;
   image_url: string | null;
+  is_premium: number;
   created_at: string;
   updated_at: string;
 }
@@ -17,6 +18,7 @@ export interface NewArticle {
   category: string;
   author?: string;
   image_url?: string;
+  is_premium?: boolean;
 }
 
 // すべての記事を取得
@@ -37,18 +39,31 @@ export function getArticleById(id: number): Article | undefined {
   return stmt.get(id) as Article | undefined;
 }
 
+// プレミアム記事のみ取得
+export function getPremiumArticles(): Article[] {
+  const stmt = db.prepare('SELECT * FROM articles WHERE is_premium = 1 ORDER BY created_at DESC');
+  return stmt.all() as Article[];
+}
+
+// 無料記事のみ取得
+export function getFreeArticles(): Article[] {
+  const stmt = db.prepare('SELECT * FROM articles WHERE is_premium = 0 ORDER BY created_at DESC');
+  return stmt.all() as Article[];
+}
+
 // 記事を作成
 export function createArticle(article: NewArticle): Article {
   const stmt = db.prepare(`
-    INSERT INTO articles (title, content, category, author, image_url)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO articles (title, content, category, author, image_url, is_premium)
+    VALUES (?, ?, ?, ?, ?, ?)
   `);
   const info = stmt.run(
     article.title,
     article.content,
     article.category,
     article.author || '編集部',
-    article.image_url || null
+    article.image_url || null,
+    article.is_premium ? 1 : 0
   );
   return getArticleById(Number(info.lastInsertRowid))!;
 }
@@ -77,6 +92,10 @@ export function updateArticle(id: number, article: Partial<NewArticle>): Article
   if (article.image_url !== undefined) {
     updates.push('image_url = ?');
     values.push(article.image_url);
+  }
+  if (article.is_premium !== undefined) {
+    updates.push('is_premium = ?');
+    values.push(article.is_premium ? 1 : 0);
   }
 
   if (updates.length === 0) {
