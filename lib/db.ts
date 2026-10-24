@@ -15,10 +15,18 @@ export function initDatabase() {
       category TEXT NOT NULL,
       author TEXT DEFAULT '編集部',
       image_url TEXT,
+      is_premium INTEGER DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  // 既存テーブルにis_premiumカラムがない場合に追加
+  try {
+    db.exec('ALTER TABLE articles ADD COLUMN is_premium INTEGER DEFAULT 0');
+  } catch {
+    // カラムが既に存在する場合は無視
+  }
 
   // 管理者テーブル
   db.exec(`
@@ -27,6 +35,31 @@ export function initDatabase() {
       username TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // メルマガ購読者テーブル
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS subscribers (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE NOT NULL,
+      name TEXT,
+      subscribed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      is_active INTEGER DEFAULT 1
+    )
+  `);
+
+  // プレミアム会員テーブル
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS premium_members (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE NOT NULL,
+      stripe_customer_id TEXT,
+      stripe_subscription_id TEXT,
+      plan TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'active',
+      subscribed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      expires_at DATETIME
     )
   `);
 
